@@ -1,4 +1,3 @@
-
 import {
   readEvents,
   readUsers,
@@ -6,7 +5,6 @@ import {
   writeReceipts,
   writeEvents,
 } from "../utils/utilsFunc.js";
-
 
 export const buyTicket = async (req, res) => {
   try {
