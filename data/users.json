@@ -2,6 +2,10 @@
   {
     "username": "string",
     "password": "string"
+  },
+  {
+    "username": "mark",
+    "password": "string",
+    "role": "admin"
   }
-
 ]

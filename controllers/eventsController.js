@@ -1,5 +1,6 @@
 import { readUsers, readEvents, writeEvents } from "../utils/utilsFunc.js";
-
+// ● One role can create events - “admin” 
+// ● Another role can only buy tickets - “user”
 export const createEvent = async (req, res) => {
   try {
     const { eventName, ticketsForSale, username, password } = req.body;
@@ -16,6 +17,9 @@ export const createEvent = async (req, res) => {
     if (!existUser) {
       return res.status(401).json({ message: "Invalid username or password" });
     }
+    if(existUser.role !== "admin"){
+        return res.status(401).json({ message: "Only users 'admin' can creat event" });}
+
 
     const events = await readEvents();
     const existEvent = events.find(

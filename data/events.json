@@ -8,5 +8,10 @@
     "eventName": "string",
     "ticketsAvailable": 45,
     "createdBy": "string"
+  },
+  {
+    "eventName": "rihana",
+    "ticketsAvailable": 45,
+    "createdBy": "mark"
   }
 ]

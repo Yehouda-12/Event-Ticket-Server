@@ -17,6 +17,7 @@ export const addUser = async (req, res) => {
     const newUser = {
       username: req.body.username,
       password: req.body.password,
+      role:"user"
     };
     users.push(newUser);
 
