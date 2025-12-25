@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "eventName": "string",
+    "ticketsAvailable": 44,
+    "createdBy": "string"
+  },
+  {
+    "eventName": "string",
+    "ticketsAvailable": 45,
+    "createdBy": "string"
+  }
+]
