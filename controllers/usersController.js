@@ -1,4 +1,4 @@
-import { readUsers, writeUsers } from "../utils/utilsFunc.js";
+import { readReceipts, readUsers, writeUsers } from "../utils/utilsFunc.js";
 
 export const addUser = async (req, res) => {
   try {
@@ -28,3 +28,41 @@ export const addUser = async (req, res) => {
   }
 };
 
+export const userSummary = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const users = await readUsers();
+
+    const existUser = users.find((user) => user.username === username);
+    if (!existUser) {
+      return res.status(400).json({ message: "User not exists" });
+    }
+    const receipts = await readReceipts();
+    const userReceipts = receipts.filter(
+      (receipt) => receipt.username === username
+    );
+    if (userReceipts.length === 0) {
+      return res.status(200).json({
+        totalTicketsBought: 0,
+        events: [],
+        averageTicketsPerEvent: 0,
+      });
+    }
+    const totalTicketsBought = userReceipts.reduce(
+      (total, receipt) => total + receipt.ticketsBought,
+      0
+    );
+    const eventUser = userReceipts.map((receipt) => receipt.eventName);
+    const events = [...new Set(eventUser)];
+    const averageTicketsPerEvent = totalTicketsBought / events.length;
+    const sumary = {
+      totalTicketsBought,
+      events,
+      averageTicketsPerEvent,
+    };
+    res.status(200).json(sumary);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};

@@ -1,7 +1,7 @@
 import express from "express";
 import users from "./routes/usersRoute.js";
 import events from './routes/eventsRoute.js'
-import tickets from './routes/buyTicketRoute.js'
+import ticketsAndSumary from './routes/buyTicketAndSummaryRoute.js'
 
 const app = express();
 
@@ -16,7 +16,8 @@ app.use((req, res, next) => {
 
 app.use("/user", users);
 app.use('/creator',events)
-app.use('/users',tickets)
+app.use('/users',ticketsAndSumary)
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
